@@ -1,73 +1,281 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronics Design Club</title>
+    <title>Electronics Engineering Design Club</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --primary: #007bff;
+            --secondary: #555;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0c0c0c;
+            --text: #f1f1f1;
+            --primary: #00c3ff;
+            --secondary: #bbb;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
+            padding: 0;
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.25s ease;
         }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            border-bottom: 1px solid #ccc;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav .right-buttons button {
+            margin-left: 10px;
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            border: 1px solid var(--text);
+            background: transparent;
+            color: var(--text);
+        }
+
         header {
-            background: #111111;
-            padding: 20px;
             text-align: center;
-            border-bottom: 2px solid #00c3ff;
+            padding: 80px 20px;
+            background: linear-gradient(to right, var(--primary), #0088ff);
+            color: white;
         }
-        h1 { color: #00c3ff; }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
+
+        h2 {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        /* Activity Cards */
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
         }
-        .section {
-            margin-bottom: 40px;
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--bg);
+            transition: 0.3s;
         }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Members */
+        .members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .member {
+            width: 200px;
+            text-align: center;
+        }
+
+        .member img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
-            opacity: 0.6;
+            margin-top: 40px;
+            opacity: 0.7;
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Electronics Engineering Design Club</h1>
-        <p>Welcome to our official website</p>
+
+<body data-theme="light">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="left">
+            <a href="#home" data-text="nav-home">首页 Home</a>
+            <a href="#activities" data-text="nav-activities">活动 Activities</a>
+            <a href="#gallery" data-text="nav-gallery">照片墙 Gallery</a>
+            <a href="#members" data-text="nav-members">成员 Members</a>
+            <a href="#contact" data-text="nav-contact">联系 Contact</a>
+        </div>
+
+        <div class="right-buttons">
+            <button onclick="toggleTheme()">🌙/☀️</button>
+            <button onclick="toggleLang()">中文/EN</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <h1 data-text="title">电子工程设计协会</h1>
+        <p data-text="subtitle">欢迎访问我们的官网 Welcome to our official website</p>
     </header>
 
-    <div class="container">
+    <!-- About Us -->
+    <h2 data-text="about-title">关于我们 About Us</h2>
+    <div class="section">
+        <p data-text="about-content">
+            我们是一个专注于电子设计、电路、嵌入式系统、PCB 设计、Arduino、物联网和硬件创新的学生社团。
+            We are a student community focused on circuit design, embedded systems, PCB design, Arduino, IoT and hardware innovation.
+        </p>
+    </div>
 
-        <div class="section">
-            <h2>About Us</h2>
-            <p>
-                We are a student electronics design and engineering community focusing on circuits,
-                embedded systems, PCB design, Arduino, IoT and hands-on hardware innovation.
-            </p>
+    <!-- Activities -->
+    <h2 id="activities" data-text="activities-title">活动 Activities</h2>
+    <div class="activities">
+        <div class="card" data-text="act1">PCB 设计训练 / PCB Design Workshop</div>
+        <div class="card" data-text="act2">Arduino / STM32 编程课程 / Programming Lessons</div>
+        <div class="card" data-text="act3">电子竞赛 / Electronics Competitions</div>
+        <div class="card" data-text="act4">硬件项目开发 / Hardware Project Development</div>
+    </div>
+
+    <!-- Gallery -->
+    <h2 id="gallery" data-text="gallery-title">照片墙 Gallery</h2>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/400" />
+        <img src="https://via.placeholder.com/400" />
+        <img src="https://via.placeholder.com/400" />
+        <img src="https://via.placeholder.com/400" />
+    </div>
+
+    <!-- Members -->
+    <h2 id="members" data-text="members-title">成员 Members</h2>
+    <div class="members">
+        <div class="member">
+            <img src="https://via.placeholder.com/200" />
+            <p data-text="mem1">张三（社长） / Alex (President)</p>
         </div>
-
-        <div class="section">
-            <h2>Activities</h2>
-            <ul>
-                <li>PCB design workshops</li>
-                <li>Arduino / STM32 programming lessons</li>
-                <li>Electronics competitions</li>
-                <li>Hardware project development</li>
-            </ul>
+        <div class="member">
+            <img src="https://via.placeholder.com/200" />
+            <p data-text="mem2">李四（副社长） / Bob (Vice President)</p>
         </div>
-
-        <div class="section">
-            <h2>Contact</h2>
-            <p>Email: example@email.com</p>
+        <div class="member">
+            <img src="https://via.placeholder.com/200" />
+            <p data-text="mem3">王五（技术负责人） / Chris (Tech Lead)</p>
         </div>
+    </div>
 
+    <!-- Contact -->
+    <h2 id="contact" data-text="contact-title">联系方式 Contact</h2>
+    <div class="section">
+        <p data-text="contact-info">Email: example@email.com</p>
     </div>
 
     <footer>
         © 2025 Electronics Engineering Design Club
     </footer>
+
+
+<script>
+/* Light/Dark mode */
+function toggleTheme() {
+    const body = document.body;
+    body.dataset.theme = body.dataset.theme === "dark" ? "light" : "dark";
+}
+
+/* Language Switch */
+let lang = "zh";
+
+function toggleLang() {
+    lang = lang === "zh" ? "en" : "zh";
+    updateLang();
+}
+
+function updateLang() {
+    const map = {
+        "nav-home": ["首页", "Home"],
+        "nav-activities": ["活动", "Activities"],
+        "nav-gallery": ["照片墙", "Gallery"],
+        "nav-members": ["成员", "Members"],
+        "nav-contact": ["联系", "Contact"],
+
+        "title": ["电子工程设计协会", "Electronics Engineering Design Club"],
+        "subtitle": ["欢迎访问我们的官网", "Welcome to our official website"],
+
+        "about-title": ["关于我们", "About Us"],
+        "about-content": [
+            "我们是一个专注于电子设计、电路、嵌入式系统、PCB 设计、Arduino、物联网和硬件创新的学生社团。",
+            "We are a student community focused on circuit design, embedded systems, PCB design, Arduino, IoT and hardware innovation."
+        ],
+
+        "activities-title": ["活动", "Activities"],
+        "act1": ["PCB 设计训练", "PCB Design Workshop"],
+        "act2": ["Arduino / STM32 编程课程", "Programming Lessons"],
+        "act3": ["电子竞赛", "Electronics Competitions"],
+        "act4": ["硬件项目开发", "Hardware Projects"],
+
+        "gallery-title": ["照片墙", "Gallery"],
+
+        "members-title": ["成员介绍", "Members"],
+        "mem1": ["张三（社长）", "Alex (President)"],
+        "mem2": ["李四（副社长）", "Bob (Vice President)"],
+        "mem3": ["王五（技术负责人）", "Chris (Tech Lead)"],
+
+        "contact-title": ["联系方式", "Contact"],
+        "contact-info": ["邮箱：example@email.com", "Email: example@email.com"]
+    };
+
+    for (const key in map) {
+        const el = document.querySelector(`[data-text="${key}"]`);
+        if (el) el.textContent = map[key][lang === "zh" ? 0 : 1];
+    }
+}
+</script>
+
 </body>
 </html>
